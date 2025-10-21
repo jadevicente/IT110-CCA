@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnknownTeam</title>        
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="has-footer">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="logo" href="#home">UnknownTeam</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#projects">Project</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Welcome to UnknownTeam</h1>
+                <p>Innovative Developers & API Solutions</p>
+            </div>
+            <div class="hero-image">
+                <img src="photo/team.png" alt="UnknownTeam Logo" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-section">
+            <div class="about-content">
+                <h2 class="about-title">About Us</h2>
+                <p>
+                    We are a dynamic team of four passionate developers dedicated to creating innovative web solutions and robust APIs. 
+                    Our diverse skill set spans across frontend development, backend engineering, full-stack development, and API design.
+                </p>
+                <p>
+                    With expertise in modern technologies including React, Node.js, Python, and cloud services, we deliver 
+                    high-quality solutions that meet the evolving needs of our clients. Our focus on clean code, 
+                    user experience, and scalable architecture ensures that every project we undertake exceeds expectations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="team-content">
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="member-photo">Irvin</div>
+                    <div class="member-name">Irvin Demonguitan</div>
+                    <div class="member-role">Full Stack Developer</div>
+                    <a href="https://github.com/Irvin" class="view-portfolio-btn" target="_blank">View Portfolio</a>
+                </div>
+
+                <div class="team-card">
+                    <div class="member-photo">Marian</div>
+                    <div class="member-name">Marian Lutrago</div>
+                    <div class="member-role">Frontend Specialist</div>
+                    <a href="https://github.com/marian" class="view-portfolio-btn" target="_blank">View Portfolio</a>
+                </div>
+
+                <div class="team-card">
+                    <div class="member-photo">Myra</div>
+                    <div class="member-name">Myrajem Mapilit</div>
+                    <div class="member-role">API Developer</div>
+                    <a href="https://github.com/Myrajem" class="view-portfolio-btn" target="_blank">View Portfolio</a>
+                </div>
+
+                <div class="team-card">
+                    <div class="member-photo">Jade</div>
+                    <div class="member-name">Jade R. Vicente</div>
+                    <div class="member-role">Backend Engineer</div>
+                    <a href="https://jadevicente.github.io/Portfolio/" class="view-portfolio-btn" target="_blank">View Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="projects-section">
+            <h2 class="api-title">Currency Converter App</h2>
+            <p class="api-description">
+                Convert currencies instantly with real-time exchange rates.
+            </p>
+            <img src="photo/currency.png" alt="Currency Converter API" class="api-image">
+            <a href="app.html" class="view-project-btn" target="_blank">View Project</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-section">
+            <div class="contact-content">
+                <h2>Contact Us</h2>
+                <p class="contact-intro">Any questions or feedback? We'd love to hear from you!</p>
+                <div class="contact-items">
+                    <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>UnknownTeam@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p>+63 902930194</p>
+                    </div>
+                    <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>Ampayon, Butuan City, Philippines</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer class="site-footer">© <span id="year">2025</span> UnknownTeam. All rights reserved.</footer>
+
+    <script>
+        
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-links li a');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                // Update active nav link
+                navLinks.forEach(nl => nl.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Smooth scroll to target section
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+
+            // Add smooth animations for team cards
+        const teamCards = document.querySelectorAll('.team-card');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        teamCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            cardObserver.observe(card);
+        });
+
+        // Enable searchable dropdowns on both selects
+        $(document).ready(function() {
+        $('#fromCurrency, #toCurrency').select2({
+            placeholder: "Select currency",
+            allowClear: true,
+            width: '100%' // Makes it match your form styling
+        });
+        });
+    </script>
+</body>
+</html>

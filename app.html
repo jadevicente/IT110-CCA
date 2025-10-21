@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="currency-converter">
+        <h1 class="converter-title">Currency Converter</h1>
+        <div class="converter-container">
+            <form class="converter-form">
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01" required>
+                </div>
+                        
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fromCurrency">From:</label>
+                        <select id="fromCurrency" required>
+                            <option value="">Select currency</option>
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                            <option value="CHF">CHF - Swiss Franc</option>
+                            <option value="CNY">CNY - Chinese Yuan</option>
+                            <option value="PHP">PHP - Philippine Peso</option>
+                            <option value="INR">INR - Indian Rupee</option>
+                            <option value="KRW">KRW - South Korean Won</option>
+                            <option value="SGD">SGD - Singapore Dollar</option>
+                            <option value="XCD">XCD - Eastern Caribbean Dollar</option>
+                            <option value="XOF">XOF - Western African CFA Franc</option>
+                            <option value="NZD">NZD - New Zealand Dollar</option>
+                            <option value="NOK">NOK - Norwegian krone</option>
+                            <option value="XAF">XAF - Central African CFA Franc</option>
+                            <option value="QAR">QAR - Qatari Riyal</option>
+                        </select>
+                    </div>
+                            
+                    <div class="form-group">
+                        <label for="toCurrency">To:</label>
+                        <select id="toCurrency" required>
+                            <option value="">Select currency</option>
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                            <option value="CHF">CHF - Swiss Franc</option>
+                            <option value="CNY">CNY - Chinese Yuan</option>
+                            <option value="PHP">PHP - Philippine Peso</option>
+                            <option value="INR">INR - Indian Rupee</option>
+                            <option value="KRW">KRW - South Korean Won</option>
+                            <option value="SGD">SGD - Singapore Dollar</option>
+                            <option value="XCD">XCD - Eastern Caribbean Dollar</option>
+                            <option value="XOF">XOF - Western African CFA Franc</option>
+                            <option value="NZD">NZD - New Zealand Dollar</option>
+                            <option value="NOK">NOK - Norwegian krone</option>
+                            <option value="XAF">XAF - Central African CFA Franc</option>
+                            <option value="QAR">QAR - Qatari Riyal</option>
+                        </select>
+                    </div> 
+                </div>   
+                
+                <button type="submit" class="convert-btn">Convert</button>
+            </form>
+
+            <div class="loading">
+                <div class="spinner"></div>
+                Converting...
+            </div>
+
+            <div class="result-card" id="resultCard">
+                <div class="result-amount" id="resultAmount"></div>
+                <div class="result-text" id="resultText"></div>
+            </div>
+            
+            <div class="rate-info" id="rateInfo" style="display: none;">
+                <p class="rate-date">As of <span id="rateDate"></span> (Philippine Time)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Link to JavaScript (place at bottom for better load performance) -->
+    <script src="scripts.js"></script>
+    
+    <!-- Initialize Select2 for searchable dropdowns -->
+    <script>
+        $(document).ready(function() {
+            $('#fromCurrency, #toCurrency').select2({
+                placeholder: "Search or select currency",
+                allowClear: true,
+                width: '100%',
+                minimumInputLength: 0,
+                language: {
+                    noResults: function() {
+                        return "No currencies found";
+                    },
+                    searching: function() {
+                        return "Searching...";
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
