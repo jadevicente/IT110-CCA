@@ -84,32 +84,12 @@
                 <div class="result-text" id="resultText"></div>
             </div>
             
-            <div class="rate-info" id="rateInfo" style="display: none;">
+            <div class="rate-info" id="rateInfo">
                 <p class="rate-date">As of <span id="rateDate"></span> (Philippine Time)</p>
             </div>
         </div>
     </div>
 
-    <script src="scripts.js"></script>
-    
-    <!-- Initialize Select2 for searchable dropdowns -->
-    <script>
-        $(document).ready(function() {
-            $('#fromCurrency, #toCurrency').select2({
-                placeholder: "Search or select currency",
-                allowClear: true,
-                width: '100%',
-                minimumInputLength: 0,
-                language: {
-                    noResults: function() {
-                        return "No currencies found";
-                    },
-                    searching: function() {
-                        return "Searching...";
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="scripts.js"></script>   
 </body>
 </html>

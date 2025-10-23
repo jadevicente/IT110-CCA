@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G2Convert4r </title>        
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <title>G2Convert4r</title>        
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -13,7 +13,7 @@
 <body class="has-footer">
     <nav class="navbar">
         <div class="nav-container">
-            <a class="logo" href="#home">G2Convert4r </a>
+            <a class="logo" href="#home">G2Convert4r</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -27,7 +27,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Welcome to G2Convert4r </h1>
+                <h1>Welcome to G2Convert4r</h1>
                 <p>Innovative Developers & API Solutions</p>
             </div>
             <div class="hero-image">
@@ -57,30 +57,39 @@
 
     <section id="team">
         <div class="team-content">
+            <h2 class="team-title">Meet Our Team</h2>
             <div class="team-grid">
                 <div class="team-card">
-                    <div class="member-photo">Irvin</div>
+                    <div class="member-photo"> 
+                        <img src="photo/irvin.png">
+                    </div>
                     <div class="member-name">Irvin Demonguitan</div>
                     <div class="member-role">Project Manager & JavaScript Support</div>
                     <a href="https://demirvin.github.io/Activity-2/" class="view-portfolio-btn" target="_blank">View Portfolio</a>
                 </div>
 
                 <div class="team-card">
-                    <div class="member-photo">Marian</div>
+                    <div class="member-photo">
+                        <img src="photo/marian.png">
+                    </div>
                     <div class="member-name">Marian Lutrago</div>
                     <div class="member-role">Specialized in layout and responsive design using CSS.</div>
                     <a href="https://github.com/marian" class="view-portfolio-btn" target="_blank">View Portfolio</a>
                 </div>
 
                 <div class="team-card">
-                    <div class="member-photo">Myra</div>
+                    <div class="member-photo">
+                        <img src="photo/myrajem.png">
+                    </div>
                     <div class="member-name">Myrajem Mapilit</div>
                     <div class="member-role">API integration and contributed to HTML structure.</div>
                     <a href="https://myra-jem.github.io/110-portfolio/" class="view-portfolio-btn" target="_blank">View Portfolio</a>
                 </div>
 
                 <div class="team-card">
-                    <div class="member-photo">Jade</div>
+                    <div class="member-photo">
+                        <img src="photo/jade.png">
+                    </div>
                     <div class="member-name">Jade R. Vicente</div>
                     <div class="member-role">Worked on HTML semantics & CSS styling</div>
                     <a href="https://jadevicente.github.io/Portfolio/" class="view-portfolio-btn" target="_blank">View Portfolio</a>
@@ -122,68 +131,9 @@
             </div>
         </div>
     </section>
-        <footer class="site-footer">© <span id="year">2025</span> G2Convert4r . All rights reserved.</footer>
 
-    <script>
+        <footer class="site-footer">©<span id="year">2025</span> G2Convert4r. All rights reserved.</footer>
         
-        // Navigation functionality
-        const navLinks = document.querySelectorAll('.nav-links li a');
-        const sections = document.querySelectorAll('section');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                // Update active nav link
-                navLinks.forEach(nl => nl.classList.remove('active'));
-                link.classList.add('active');
-                
-                // Smooth scroll to target section
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                }
-            });
-        });
-
-            // Add smooth animations for team cards
-        const teamCards = document.querySelectorAll('.team-card');
-        
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, index * 100);
-                }
-            });
-        }, observerOptions);
-
-        teamCards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            cardObserver.observe(card);
-        });
-
-        // Enable searchable dropdowns on both selects
-        $(document).ready(function() {
-        $('#fromCurrency, #toCurrency').select2({
-            placeholder: "Select currency",
-            allowClear: true,
-            width: '100%' // Makes it match your form styling
-        });
-        });
-    </script>
+        <script src="scripts.js"></script>
 </body>
 </html>

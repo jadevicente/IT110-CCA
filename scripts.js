@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const rateDate = document.getElementById("rateDate");
             const updateTime = new Date(data.time_last_update_unix * 1000);
             const philippineTime = updateTime.toLocaleString("en-US", {
-                timeZone: "Asia/Manila",
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -73,9 +72,80 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             rateDate.textContent = philippineTime;
             rateInfo.style.display = "block";
+
         } catch (error) {
             loading.style.display = "none";
             alert("Error: " + error.message);
         }
     });
 });
+
+    $(document).ready(function() {
+                $('#fromCurrency, #toCurrency').select2({
+                    placeholder: "Search or select currency",
+                    allowClear: true,
+                    width: '100%',
+                    minimumInputLength: 0,
+                    language: {
+                        noResults: function() {
+                            return "No currencies found";
+                        },
+                        searching: function() {
+                            return "Searching...";
+                        }
+                    }
+                });
+            });  
+
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-links li a');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                // Update active nav link
+                navLinks.forEach(nl => nl.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Smooth scroll to target section
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+
+            // Add smooth animations for team cards
+        const teamCards = document.querySelectorAll('.team-card');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        teamCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            cardObserver.observe(card);
+        });
+
+        //to update year automatically
+        document.getElementById("year").textContent = new Date().getFullYear();
